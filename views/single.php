@@ -23,6 +23,7 @@
        
         <h3><?php echo $product->title ?> </h3>
         <img src="<?php echo $product->image ?>" alt="">
+        <p>$<?php echo $product->price ?></p>
         <p><?php echo $product->description ?></p>
         <button class="btn btn-primary"  id="checkout-button">Buy Now</button>
       
