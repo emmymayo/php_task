@@ -10,17 +10,22 @@
     <title>Products</title>
 </head>
 <body>
-    <?php foreach($products as $product) :?>
-        <div>
-            <h3><a href="<?php echo BASEURL.'product/'.$product->id ?>"><?php echo $product->title ?></a></h3>
-            <h3><?php echo $product->description ?></h3>
-           
-            <img src="<?php echo $product->image ?>" alt="">
-            <h3><?php echo $product->price ?></h3>
-            <p></p>
+    <div class="container my-2">
+        <div class="row">
+        <?php foreach($products as $product) :?>
+            <div class="col-md-4">
+                <h3><a href="<?php echo BASEURL.'product/'.$product->id ?>"><?php echo $product->title ?></a></h3>
+                <p><?php echo $product->description ?></p>
+            
+                <a href="<?php echo BASEURL.'product/'.$product->id ?>">
+                    <img src="<?php echo $product->image ?>" alt="">
+                </a>
+                <p>$<?php echo $product->price ?></p>
+                <p></p>
+            </div>
+        <?php endforeach ;?>
         </div>
-    <?php endforeach ;?>
-
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

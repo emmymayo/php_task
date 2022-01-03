@@ -22,4 +22,4 @@ define('STRIPE_CANCEL_URL',BASEURL.'stripe_checkout/cancel');
 
 require 'lib/stripe-php-7.108.0/init.php';
 
-$stripe = new StripeClient(STRIPE_API_KEY);
+

@@ -18,10 +18,12 @@
 
 </head>
 <body>
-    <div>
+    <div class="container"><a href="<?php echo BASEURL ?>">Home</a></h3></div>
+    <div class="container my-2">
        
-        <h1><?php echo $product->title ?> </h1>
+        <h3><?php echo $product->title ?> </h3>
         <img src="<?php echo $product->image ?>" alt="">
+        <p><?php echo $product->description ?></p>
         <button class="btn btn-primary"  id="checkout-button">Buy Now</button>
       
     </div>

@@ -54,7 +54,7 @@ class ProductController{
         $stripe = new StripeClient(STRIPE_API_KEY);
         $session = $stripe->checkout->sessions->create([
             'success_url' => BASEURL.'product/'.$product->id.'/checkout/success?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => BASEURL.'product/'.$product->id.'/checkout/cancel?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => BASEURL.'product/'.$product->id.'/checkout/cancel',
             'payment_method_types' => ['card'],
             'mode' => 'payment',
             'line_items' => [
