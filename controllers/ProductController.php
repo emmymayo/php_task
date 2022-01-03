@@ -20,9 +20,14 @@ class ProductController{
     }
 
     public function success($id){
+        // retrieve session
+        $stripe = new StripeClient(STRIPE_API_KEY);
+        $session = $stripe->checkout->sessions->retrieve($_REQUEST['session_id']);
+        // Save order
         $product = R::findOne('products','id = ?',[(int)$id]);
         $order = R::dispense('orders');
         $order->product_id = $product->id;
+        $order->stripe_id = $session->id;
         $order->total = $product->price;
         $order->status = 'paid';
         R::store($order);
@@ -48,8 +53,8 @@ class ProductController{
         $total = (int)$product->price*100*$quantity;
         $stripe = new StripeClient(STRIPE_API_KEY);
         $session = $stripe->checkout->sessions->create([
-            'success_url' => BASEURL.'product/'.$product->id.'/checkout/success',
-            'cancel_url' => BASEURL.'product/'.$product->id.'/checkout/cancel',
+            'success_url' => BASEURL.'product/'.$product->id.'/checkout/success?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => BASEURL.'product/'.$product->id.'/checkout/cancel?session_id={CHECKOUT_SESSION_ID}',
             'payment_method_types' => ['card'],
             'mode' => 'payment',
             'line_items' => [
